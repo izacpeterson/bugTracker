@@ -39,8 +39,8 @@ app.get("/api/deploy", (req, res) => {
     if (error !== null) {
       console.log(`Exec error: ${error}`);
     }
-    res.send("DEPLOYMENT COMPLETE");
   });
+  res.send("DEPLOYMENT COMPLETE");
 });
 
 app.listen(8082, () => {
