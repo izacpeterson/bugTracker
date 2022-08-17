@@ -1,8 +1,3 @@
-<script setup>
-import { getUser } from "../functions/firebaseSetup";
-import BugReport from "../components/BugReport.vue";
-</script>
-
 <template>
   <main class="flex flex-col items-center">
     <router-link v-if="!user" class="m-2 p-2 bg-primary text-white" to="/account">Login</router-link>
@@ -16,6 +11,8 @@ import BugReport from "../components/BugReport.vue";
 </template>
 
 <script>
+import { getUser } from "../functions/firebaseSetup";
+import BugReport from "../components/BugReport.vue";
 export default {
   data() {
     return {

@@ -1,7 +1,3 @@
-<script setup>
-import { signInWithGoogle, createPasswordUser, signInPasswordUser, getUser, logout } from "../functions/firebaseSetup.js";
-import router from "../router";
-</script>
 <template>
   <main class="flex items-center justify-evenly">
     <div v-if="!user">
@@ -39,6 +35,8 @@ import router from "../router";
   </main>
 </template>
 <script>
+import { signInWithGoogle, createPasswordUser, signInPasswordUser, getUser, logout } from "../functions/firebaseSetup.js";
+import router from "../router";
 export default {
   data() {
     return {

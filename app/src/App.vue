@@ -1,8 +1,6 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
-import PageHeader from "./components/PageHeader.vue";
 </script>
-
 <template>
   <div>
     <PageHeader />
@@ -12,6 +10,7 @@ import PageHeader from "./components/PageHeader.vue";
 </template>
 
 <script>
+import PageHeader from "./components/PageHeader.vue";
 export default {
   data() {
     return {
