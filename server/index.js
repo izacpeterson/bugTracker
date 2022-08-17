@@ -3,6 +3,7 @@ const app = express();
 const sqlite = require("sqlite3").verbose();
 const cors = require("cors");
 const { exec } = require("child_process");
+const { v4 } = require("uuid");
 
 app.use(cors());
 app.use(express.json());
@@ -17,12 +18,21 @@ app.get("/api/test", (req, res) => {
   console.log("USR Connected");
   res.json({ msg: "Hello World!" });
 });
+
+app.get("/api/bugs", (req, res) => {
+  console.log("BUGS");
+  db.all("SELECT *, rowid FROM bugs", (err, rows) => {
+    if (err) console.log(err);
+    res.json(rows);
+  });
+});
+
 app.post("/api/report", (req, res) => {
   console.log(req.body);
 
   db.exec(`
-    insert into bugs(title, description, reporter, status)
-    values ('${req.body.bug}', '${req.body.description}', '${req.body.uid}', 'new')
+    insert into bugs(title, description, reporter, status, uuid)
+    values ('${req.body.bug}', '${req.body.description}', '${req.body.uid}', 'new', '${v4()}')
   `);
 
   res.send("Thank you");
