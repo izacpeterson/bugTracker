@@ -1,6 +1,4 @@
-<script setup>
-import { getUser } from "../functions/firebaseSetup";
-</script>
+<script setup></script>
 <template>
   <div class="bg-black/50 backdrop-blur fixed top-0 w-full h-full flex flex-col items-center justify-center">
     <form v-if="!submitted" @submit.prevent="submitBug" action="" class="w-full flex flex-col items-center justify-center">
@@ -20,6 +18,8 @@ import { getUser } from "../functions/firebaseSetup";
   </div>
 </template>
 <script>
+import { getUser } from "../functions/firebaseSetup";
+
 export default {
   data() {
     return {
