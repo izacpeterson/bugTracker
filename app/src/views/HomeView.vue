@@ -5,6 +5,7 @@ import BugReport from "../components/BugReport.vue";
 
 <template>
   <main class="flex flex-col items-center">
+    <h1 class="text-2xl">TESTING DEPLOYMENT</h1>
     <router-link v-if="!user" class="m-2 p-2 bg-primary text-white" to="/account">Login</router-link>
     <div v-if="user" class="dark:text-white flex flex-col justify-center">
       <p class="text-6xl">Hello, {{ user.displayName.split(" ")[0] }}</p>
