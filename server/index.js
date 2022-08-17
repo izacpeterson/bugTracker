@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const sqlite = require("sqlite3").verbose();
 const cors = require("cors");
+const { exec } = require("child_process");
+
 app.use(cors());
 app.use(express.json());
 
@@ -28,6 +30,17 @@ app.post("/api/report", (req, res) => {
 
 app.get("/api/reset", (req, res) => {
   db.exec("DELETE FROM bugs");
+});
+
+app.get("/api/deploy", (req, res) => {
+  exec("sh ../build.sh", (error, stdout, stderr) => {
+    console.log(stdout);
+    console.log(stderr);
+    if (error !== null) {
+      console.log(`Exec error: ${error}`);
+    }
+    res.send("DEPLOYMENT COMPLETE");
+  });
 });
 
 app.listen(8082, () => {
