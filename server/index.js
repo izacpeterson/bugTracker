@@ -40,7 +40,7 @@ app.get("/api/deploy", (req, res) => {
       console.log(`Exec error: ${error}`);
     }
   });
-  res.send("DEPLOYMENT COMPLETE: https://bugs.izacpeterson.com");
+  res.send("DEPLOYMENT Started: https://bugs.izacpeterson.com");
 });
 
 app.listen(8082, () => {
