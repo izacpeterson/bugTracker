@@ -4,15 +4,30 @@ const sqlite = require("sqlite3").verbose();
 const cors = require("cors");
 const { exec } = require("child_process");
 const { v4 } = require("uuid");
+const history = require("connect-history-api-fallback");
+const path = require("path");
 
 app.use(cors());
-app.use(express.json());
 
+app.use(express.json());
 app.use(express.static("../app/dist"));
+
+// app.use(
+//   history({
+//     disableDotRule: true,
+//     verbose: true,
+//   })
+// );
+
+// app.use(express.static("../app/dist"));
 
 let db = new sqlite.Database("./data/db.db", sqlite.OPEN_READWRITE, (err) => {
   if (err) console.log(err);
 });
+
+// app.get("/", (req, res) => {
+//   res.render("../app/dist/index.html");
+// });
 
 app.get("/api/test", (req, res) => {
   console.log("USR Connected");
