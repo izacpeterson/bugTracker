@@ -1,22 +1,28 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { RouterLink, RouterView } from "vue-router";
+import PageHeader from "./components/PageHeader.vue";
 </script>
 
 <template>
-  <header>
-    <h1>Header</h1>
-  </header>
+  <div>
+    <PageHeader />
 
-  <RouterView />
+    <RouterView />
+  </div>
 </template>
 
 <script>
-async function fetchData() {
-  const res = await fetch('/api/test')
-  const data = await res.json()
-  console.log(data);
-}
-
-fetchData();
+export default {
+  data() {
+    return {
+      message: "Hello World",
+    };
+  },
+  async created() {
+    console.log("App created");
+    const res = await fetch("/api/test");
+    const data = await res.json();
+    console.log(data);
+  },
+};
 </script>
