@@ -5,9 +5,12 @@ Visit the page <a href="https://izacpeterson.com/bugs">here</a>
 
 Status: WIP
 
+---
+
 August 16th, 2022
 
 Goals:
+
 <ul>
     <li>Create basic homepage</li>
     <li>Create basic login page</li>
@@ -17,3 +20,15 @@ Goals:
     <li>Setup nginx & google domain</li>
 </ul>
 
+---
+
+August 17th, 2022
+
+Goals:
+
+<ul>
+    <li>Deploy on server</li>
+    <li>Set up nginx</li>
+    <li>Set up DB</li>
+    <li>Add 'report bug' functionality</li>
+</ul>
