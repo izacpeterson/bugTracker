@@ -24,6 +24,10 @@ app.post("/api/report", (req, res) => {
   res.send("Thank you");
 });
 
+app.get("/api/reset", (req, res) => {
+  db.exec("DELETE FROM bugs");
+});
+
 app.listen(8082, () => {
   console.log("server up");
 });

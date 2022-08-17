@@ -7,12 +7,15 @@ import { getUser } from "../functions/firebaseSetup";
       <h3 class="text-white">Report a bug</h3>
       <input v-model="bug" type="text" name="bug" placeholder="Bug" class="m-2 w-1/4" />
       <textarea v-model="description" type="text" name="description" placeholder="Description" class="m-2 w-1/4 h-1/4" />
-      <input type="submit" value="Submit" class="m-2 p-2 bg-blue-800 text-white" />
+      <span>
+        <input type="submit" value="Submit" class="m-2 p-2 bg-primary text-white" />
+        <button @click="$emit('closePopup')" class="m-2 p-2 bg-primary text-white">Cancel</button>
+      </span>
     </form>
     <div v-if="submitted" class="flex flex-col items-center justify-center text-white w-full">
       <h3>Thank you!</h3>
       <p>Thank you for submitting a bug report. It has been received. You may close this popup</p>
-      <button @click="$emit('closePopup')" class="m-2 p-2 bg-blue-800 text-white">Close</button>
+      <button @click="$emit('closePopup')" class="m-2 p-2 bg-primary text-white">Close</button>
     </div>
   </div>
 </template>
