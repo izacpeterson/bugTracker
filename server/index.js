@@ -5,6 +5,8 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 
+app.use(express.static("../app/dist"));
+
 let db = new sqlite.Database("./data/db.db", sqlite.OPEN_READWRITE, (err) => {
   if (err) console.log(err);
 });
