@@ -93,7 +93,6 @@ function logout() {
     .then(() => {
       // Sign-out successful.
       console.log("Logged Out");
-      window.location.reload();
     })
     .catch((error) => {
       // An error happened.

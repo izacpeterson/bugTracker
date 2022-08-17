@@ -1,5 +1,6 @@
 <script setup>
 import { signInWithGoogle, createPasswordUser, signInPasswordUser, getUser, logout } from "../functions/firebaseSetup.js";
+import router from "../router";
 </script>
 <template>
   <main class="flex items-center justify-evenly">
@@ -32,7 +33,7 @@ import { signInWithGoogle, createPasswordUser, signInPasswordUser, getUser, logo
           <p>{{ user.email }}</p>
         </div>
       </div>
-      <button @click="logout" class="m-2 p-2 bg-primary text-white">Logout</button>
+      <button @click="logoutUser" class="m-2 p-2 bg-primary text-white">Logout</button>
     </div>
     <label for="darkmode"><input @click="darkmode" type="checkbox" name="darkmode" id="darkmode" v-model="checked" />darkmode</label>
   </main>
@@ -62,6 +63,10 @@ export default {
       console.log(e.target.checked);
       document.querySelector("html").classList.toggle("dark");
       localStorage.setItem("darkmode", e.target.checked);
+    },
+    logoutUser() {
+      logout();
+      router.push("/");
     },
   },
   async created() {
