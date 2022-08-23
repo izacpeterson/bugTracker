@@ -38,6 +38,7 @@ export default {
         description: this.description,
         uid: this.uid,
       });
+      console.log(raw);
 
       const requestOptions = {
         method: "POST",
@@ -46,7 +47,7 @@ export default {
         redirect: "follow",
       };
 
-      fetch("http://localhost:8082/api/report", requestOptions)
+      fetch("/api/report", requestOptions)
         .then((response) => response.text())
         .then((result) => console.log(result))
         .catch((error) => console.log("error", error));

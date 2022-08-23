@@ -2,12 +2,13 @@
   <div class="flex m-4 bg-gray-100 dark:bg-zinc-800 drop-shadow">
     <div class="flex flex-col w-full px-4 py-1">
       <div class="flex w-full justify-between">
-        <span>{{ status }}</span>
+        <span>{{ bug }}</span>
         <span>{{ timestamp }}</span>
       </div>
       <span class="px-2">{{ description }}</span>
       <span class="text-xs text-right text-gray-500">{{ uuid }}</span>
     </div>
+
     <span @click="changeStatus" class="bg-primary text-white flex items-center justify-center p-4 cursor-pointer">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="w-4 fill-white">
         <!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
