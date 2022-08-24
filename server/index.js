@@ -53,6 +53,15 @@ app.post("/api/report", (req, res) => {
   res.send("Thank you");
 });
 
+app.get("/api/status", (req, res) => {
+  db.exec(`
+    UPDATE bugs
+    SET status = '${req.query.status}'
+    WHERE uuid = '${req.query.uuid}'
+  `);
+  res.send("Thank you");
+});
+
 app.get("/api/reset", (req, res) => {
   db.exec("DELETE FROM bugs");
 });
@@ -66,6 +75,14 @@ app.get("/api/deploy", (req, res) => {
     }
   });
   res.send("DEPLOYMENT Started: https://bugs.izacpeterson.com");
+});
+
+app.get("/*", function (req, res) {
+  res.sendFile(path.join(__dirname, "../app/index.html"), function (err) {
+    if (err) {
+      res.send(__dirname);
+    }
+  });
 });
 
 app.listen(8082, () => {
