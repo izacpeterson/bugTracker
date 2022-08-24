@@ -1,11 +1,13 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
+import WelcomeView from "./views/WelcomeView.vue";
 </script>
 <template>
   <div>
-    <PageHeader :user="user"/>
+    <PageHeader v-if="user" :user="user" />
+    <RouterView v-if="user" />
 
-    <RouterView />
+    <WelcomeView v-if="!user" />
   </div>
 </template>
 
