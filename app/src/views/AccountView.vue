@@ -1,26 +1,26 @@
 <script setup>
-import { signInWithGoogle, createPasswordUser, signInPasswordUser, getUser, logout } from "../functions/firebaseSetup.js";
+import { signInWithGoogle, createPasswordUser, signInPasswordUser, getUser, logout, updateUser } from "../functions/firebaseSetup.js";
 </script>
 <template>
   <main class="flex items-center justify-evenly">
     <div v-if="!user">
       <h2 class="m-2 dark:text-white text-2xl">Create Account</h2>
-      <button @click="signInWithGoogle" class="m-2 p-2 bg-primary text-white">Create account with Google</button>
+      <button @click="signInWithGoogle" class="m-2 p-2 bg-secondary text-white">Create account with Google</button>
       <div class="flex flex-col">
         <h2 class="dark:text-white">Create Account with email and password</h2>
         <input v-model="email" class="m-2 bg-gray-200" type="text" placeholder="email" />
         <input v-model="password" class="m-2 bg-gray-200" type="text" placeholder="password" />
-        <button @click="createUser" class="m-2 p-2 bg-primary text-white">Create</button>
+        <button @click="createUser" class="m-2 p-2 bg-secondary text-white">Create</button>
       </div>
     </div>
     <div v-if="!user">
       <h2 class="m-2 dark:text-white text-xl">Login</h2>
-      <button @click="signInWithGoogle" class="m-2 p-2 bg-primary text-white">Login with Google</button>
+      <button @click="signInWithGoogle" class="m-2 p-2 bg-secondary text-white">Login with Google</button>
       <div class="flex flex-col">
         <h2 class="dark:text-white">Login with email and password</h2>
         <input v-model="email" class="m-2 bg-gray-200" type="email" placeholder="email" />
         <input v-model="password" class="m-2 bg-gray-200" type="password" placeholder="password" />
-        <button @click="loginUser" class="m-2 p-2 bg-primary text-white">Login</button>
+        <button @click="loginUser" class="m-2 p-2 bg-secondary text-white">Login</button>
       </div>
     </div>
     <div v-if="user">
@@ -28,11 +28,12 @@ import { signInWithGoogle, createPasswordUser, signInPasswordUser, getUser, logo
       <div class="flex">
         <img :src="`https://ui-avatars.com/api/?name=${user.displayName}&background=random&rounded=true`" alt="" class="m-2" />
         <div class="dark:text-white text-xl m-2">
-          <p>{{ user.displayName }}</p>
+          <input @input="editedUsername=true" v-model="displayName" placeholder="Firstname Lastname" class="bg-zinc-100 dark:bg-zinc-800" />
+          <button @click="updateUser(displayName)" v-if="editedUsername"  class="m-1 p-1 bg-secondary text-white text-xs">Save</button>
           <p>{{ user.email }}</p>
         </div>
       </div>
-      <button @click="logoutUser" class="m-2 p-2 bg-primary text-white">Logout</button>
+      <button @click="logoutUser" class="m-2 p-2 bg-secondary text-white">Logout</button>
     </div>
     <label for="darkmode"><input @click="darkmode" type="checkbox" name="darkmode" id="darkmode" v-model="checked" />darkmode</label>
   </main>
@@ -43,8 +44,11 @@ export default {
     return {
       email: "",
       password: "",
+      displayName:"",
       user: null,
       checked: false,
+      editedUsername: false,
+      count:0
     };
   },
   methods: {
@@ -67,6 +71,9 @@ export default {
       logout();
       this.$router.push("/");
     },
+    saveDisplayname(){
+
+    }
   },
   async created() {
     if (localStorage.getItem("darkmode") == "true") {
@@ -76,6 +83,7 @@ export default {
     getUser((user) => {
       console.log(user);
       this.user = user;
+      this.displayName = user.displayName;
     });
   },
 };

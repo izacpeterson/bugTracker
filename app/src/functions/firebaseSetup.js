@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -99,4 +99,10 @@ function logout() {
     });
 }
 
-export { signInWithGoogle, createPasswordUser, signInPasswordUser, getUser, logout };
+function updateUser(displayName) {
+  updateProfile(auth.currentUser,{
+    displayName: displayName,
+  });
+}
+
+export { signInWithGoogle, createPasswordUser, signInPasswordUser, getUser, logout, updateUser };

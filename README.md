@@ -52,5 +52,15 @@ Goals:
 
 <ul>
     <li>Change bug status</li>
-    <li></li>
+</ul>
+
+---
+
+August 24th, 2022
+
+Goals:
+
+<ul>
+    <li>Create single bug view</li>
+    <li>Assign to self</li>
 </ul>
