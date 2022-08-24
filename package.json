@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "bug-tracker": "file:app"
+  }
+}

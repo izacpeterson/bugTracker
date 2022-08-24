@@ -32,3 +32,25 @@ Goals:
     <li>Set up DB</li>
     <li>Add 'report bug' functionality</li>
 </ul>
+
+---
+
+August 19th, 2022
+
+Goals:
+
+<ul>
+    <li>Fix vue routing issue</li>
+    <li>Look at setting up docker. Just for fun</li>
+</ul>
+
+---
+
+August 23rd, 2022
+
+Goals:
+
+<ul>
+    <li>Change bug status</li>
+    <li></li>
+</ul>
