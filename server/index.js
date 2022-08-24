@@ -12,21 +12,14 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static("../app/dist"));
 
-// app.use(
-//   history({
-//     disableDotRule: true,
-//     verbose: true,
-//   })
-// );
+let fake_data = true;
 
-// app.use(express.static("../app/dist"));
-
-let db = new sqlite.Database("./data/db.db", sqlite.OPEN_READWRITE, (err) => {
+let db = new sqlite.Database(fake_data ? "./data/db_fake_data.db" : "./data/db.db", sqlite.OPEN_READWRITE, (err) => {
   if (err) console.log(err);
 });
 
-// app.get("/", (req, res) => {
-//   res.render("../app/dist/index.html");
+// let db = new sqlite.Database("./data/db_fake_data.db", sqlite.OPEN_READWRITE, (err) => {
+//   if (err) console.log(err);
 // });
 
 app.get("/api/test", (req, res) => {
