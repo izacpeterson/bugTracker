@@ -22,6 +22,11 @@ let db = new sqlite.Database(fake_data ? "./data/db_fake_data.db" : "./data/db.d
 //   if (err) console.log(err);
 // });
 
+function createTable(){
+  db.exec("CREATE TABLE 'bugs' ('title' VARCHAR, 'description' VARCHAR, 'reporter' VARCHAR, 'assigned' VARCHAR, 'status' VARCHAR, 'timestamp' VARCHAR DEFAULT CURRENT_TIMESTAMP, uuid);")
+}
+createTable();
+
 app.get("/api/test", (req, res) => {
   console.log("USR Connected");
   res.json({ msg: "Hello World!" });
