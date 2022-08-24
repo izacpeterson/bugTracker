@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static("../app/dist"));
 
-let fake_data = true;
+let fake_data = false;
 
 let db = new sqlite.Database(fake_data ? "./data/db_fake_data.db" : "./data/db.db", sqlite.OPEN_READWRITE, (err) => {
   if (err) console.log(err);
