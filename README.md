@@ -62,5 +62,14 @@ Goals:
 
 <ul>
     <li>Create single bug view</li>
-    <li>Assign to self</li>
+</ul>
+
+---
+
+August 25th, 2022
+
+Goals:
+
+<ul>
+    <li>Better mobile experience</li>
 </ul>
