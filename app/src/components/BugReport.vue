@@ -1,9 +1,9 @@
 <template>
-  <div class="bg-black/50 backdrop-blur fixed top-0 w-full h-full flex flex-col items-center justify-center">
+  <div class="bg-black/50 backdrop-blur fixed top-0 w-full h-full flex flex-col items-center justify-center p-6">
     <form v-if="!submitted" @submit.prevent="submitBug" action="" class="w-full flex flex-col items-center justify-center">
       <h3 class="text-white">Report a bug</h3>
-      <input v-model="bug" type="text" name="bug" placeholder="Bug" class="m-2 w-1/4" />
-      <textarea v-model="description" type="text" name="description" placeholder="Description" class="m-2 w-1/4 h-1/4" />
+      <input v-model="bug" type="text" name="bug" placeholder="Bug" class="m-2 w-full lg:w-1/4" />
+      <textarea v-model="description" type="text" name="description" placeholder="Description" class="m-2 w-full lg:w-1/4 h-1/4" />
       <span>
         <input type="submit" value="Submit" class="m-2 p-2 bg-secondary text-white" />
         <button @click="$emit('closePopup')" class="m-2 p-2 bg-secondary text-white">Cancel</button>

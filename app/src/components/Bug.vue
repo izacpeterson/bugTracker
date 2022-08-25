@@ -1,14 +1,15 @@
 <template>
-  <div class="flex m-4 bg-gray-100 dark:bg-zinc-800 drop-shadow">
+  <div class="flex m-4 bg-gray-100 dark:bg-zinc-800 drop-shadow lg:w-full">
+    <span v-if="status == 'new'" class="bg-secondary w-1"></span>
+    <span v-if="status == 'wip'" class="bg-primary w-1"></span>
+    <span v-if="status == 'fixed'" class="bg-tertiary w-1"></span>
     <div class="flex flex-col w-full px-4 py-1">
       <div class="flex w-full justify-between">
         <router-link :to="{ name: 'bug', params: { uuid: uuid } }">
           <span class="underline">{{ bug }}</span>
         </router-link>
-
-        <span>{{ timestamp }}</span>
       </div>
-      <span class="px-2">{{ description }}</span>
+      <span class="px-2 h-12 text-clip overflow-hidden ...">{{ description }}</span>
       <span class="text-xs text-right text-gray-500">{{ uuid }}</span>
     </div>
 

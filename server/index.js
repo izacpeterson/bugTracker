@@ -22,8 +22,8 @@ let db = new sqlite.Database(fake_data ? "./data/db_fake_data.db" : "./data/db.d
 //   if (err) console.log(err);
 // });
 
-function createTable(){
-  db.exec("CREATE TABLE 'bugs' ('title' VARCHAR, 'description' VARCHAR, 'reporter' VARCHAR, 'assigned' VARCHAR, 'status' VARCHAR, 'timestamp' VARCHAR DEFAULT CURRENT_TIMESTAMP, uuid);")
+function createTable() {
+  db.exec("CREATE TABLE 'bugs' ('title' VARCHAR, 'description' VARCHAR, 'reporter' VARCHAR, 'assigned' VARCHAR, 'status' VARCHAR, 'timestamp' VARCHAR DEFAULT CURRENT_TIMESTAMP, uuid);");
 }
 // createTable();
 
@@ -39,13 +39,13 @@ app.get("/api/bugs", (req, res) => {
     res.json(rows);
   });
 });
-app.get('/api/bug',(req,res)=>{
+app.get("/api/bug", (req, res) => {
   let uuid = req.query.uuid;
   console.log(uuid);
-  db.all(`SELECT * FROM bugs WHERE uuid = '${uuid}'`,(err,rows)=>{
+  db.all(`SELECT * FROM bugs WHERE uuid = '${uuid}'`, (err, rows) => {
     res.json(rows[0]);
   });
-})
+});
 
 app.post("/api/report", (req, res) => {
   console.log(req.body);

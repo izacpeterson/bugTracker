@@ -1,11 +1,11 @@
 <template>
   <main class="p-5 dark:text-zinc-100">
-    <h1 class="text-4xl">{{ bug.title }}</h1>
-    <div class="flex">
-      <div class="w-1/3">
+    <h1 class="text-4xl text-center">{{ bug.title }}</h1>
+    <div class="flex flex-col lg:flex-row">
+      <div class="lg:w-1/3 my-4">
         <p>{{ bug.description }}</p>
       </div>
-      <div class="w-1/3 px-10">
+      <div class="lg:w-1/3 lg:px-10">
         <div>Created: {{ bug.timestamp }}</div>
         <div>Reporter: {{ bug.reporter }}</div>
         <div>Assignee: {{ bug.assigned }}</div>

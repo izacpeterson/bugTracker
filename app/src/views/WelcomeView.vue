@@ -3,16 +3,17 @@ import { signInWithGoogle, createPasswordUser, signInPasswordUser, getUser, logo
 </script>
 <template>
   <main class="flex flex-col items-center dark:text-zinc-100 p-6">
-    <h1 class="text-6xl">Welcome to Izac's bug tracker!</h1>
-    <img src="../assets/bug.svg" alt="" class="w-1/6 p-12" />
+    <h1 class="text-6xl">Welcome</h1>
+    <h2 class="text-xl">to Izac's bug tracker!</h2>
+    <img src="../assets/bug.svg" alt="" class="hidden lg:flex w-1/6 p-12" />
     <p>To continue, please sign in, or create an account</p>
-    <div class="flex w-1/4">
-      <button @click="page = 'create'" class="m-2 p-2 bg-secondary text-white w-full">Create Account</button>
-      <button @click="page = 'login'" class="m-2 p-2 bg-secondary text-white w-full">Login</button>
+    <div class="flex w-full lg:w-1/4">
+      <button @click="page = 'create'" class="m-2 p-2 bg-primary text-white w-full">Create Account</button>
+      <button @click="page = 'login'" class="m-2 p-2 bg-primary text-white w-full">Login</button>
     </div>
 
-    <div v-if="page == 'create'" class="flex p-8 items-center w-1/2 justify-evenly">
-      <button @click="signInWithGoogle" class="m-2 p-2 bg-secondary text-white">Create account with Google</button>
+    <div v-if="page == 'create'" class="flex flex-col lg:flex-row p-8 items-center lg:w-1/2 justify-evenly">
+      <button @click="signInWithGoogle" class="m-2 mb-12 p-2 bg-secondary text-white">Create account with Google</button>
       <div class="flex flex-col">
         <h2 class="dark:text-white">Create Account with email and password</h2>
         <input v-model="email" class="m-2 bg-gray-200 dark:bg-zinc-800" type="text" placeholder="email" />
@@ -20,8 +21,8 @@ import { signInWithGoogle, createPasswordUser, signInPasswordUser, getUser, logo
         <button @click="createUser" class="m-2 p-2 bg-secondary text-white">Create</button>
       </div>
     </div>
-    <div v-if="page == 'login'" class="flex p-8 items-center w-1/2 justify-evenly">
-      <button @click="signInWithGoogle" class="m-2 p-2 bg-secondary text-white">Login with Google</button>
+    <div v-if="page == 'login'" class="flex flex-col lg:flex-row p-8 items-center lg:w-1/2 justify-evenly">
+      <button @click="signInWithGoogle" class="m-2 mb-12 p-2 bg-secondary text-white">Login with Google</button>
       <div class="flex flex-col">
         <h2 class="dark:text-white">Login with email and password</h2>
         <input v-model="email" class="m-2 bg-gray-200 dark:bg-zinc-800" type="email" placeholder="email" />

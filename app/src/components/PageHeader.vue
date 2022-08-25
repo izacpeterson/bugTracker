@@ -19,8 +19,7 @@
     </router-link> -->
     <div v-if="user" class="group relative">
       <router-link to="/account" class="flex items-center">
-        <img :src="`https://ui-avatars.com/api/?name=${user.displayName}&background=random&rounded=true`" alt=""
-          class="m-2 w-8" />{{ user.displayName }}
+        <img :src="`https://ui-avatars.com/api/?name=${user.displayName}&background=random&rounded=true`" alt="" class="m-2 w-8" /><span class="hidden lg:flex">{{ user.displayName }}</span>
       </router-link>
       <ul class="hidden group-hover:block absolute w-32 right-0 bg-zinc-200 text-zinc-900">
         <li class="p-2 cursor-pointer">
