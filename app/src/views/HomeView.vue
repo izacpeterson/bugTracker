@@ -9,7 +9,7 @@ import BugReport from "../components/BugReport.vue";
       <button @click="popupVisible = !popupVisible" class="m-2 p-2 bg-secondary text-white">Report Bug</button>
     </div>
     <BugReport v-if="popupVisible" @closePopup="popupVisible = !popupVisible"></BugReport>
-    <button @click="reset" class="fixed bottom-0">RESET DB</button>
+    <!-- <button @click="reset" class="fixed bottom-0">RESET DB</button> -->
   </main>
 </template>
 
