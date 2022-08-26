@@ -8,10 +8,14 @@ const history = require("connect-history-api-fallback");
 const path = require("path");
 
 const fs = require('fs');
+const util = require('util');
+
+const log_file= fs.createWriteStream(__dirname + '/debug.log', {flags : 'a'});
+const log_stdout = process.stdout;
 
 console.log = function(d){
-    fs.appendFileSync(__dirname + '/debug.log', `${d}\n`);
-    process.stdout.write(`${d}\n`);
+    log_file.write(util.format(d) + '\n');
+    log_stdout.write(util.format(d) + '\n');
 };
 
 app.use(cors());
