@@ -7,6 +7,13 @@ const { v4 } = require("uuid");
 const history = require("connect-history-api-fallback");
 const path = require("path");
 
+const fs = require('fs');
+
+console.log = function(d){
+    fs.appendFileSync(__dirname + '/debug.log', `${d}\n`);
+    process.stdout.write(`${d}\n`);
+};
+
 app.use(cors());
 
 app.use(express.json());
