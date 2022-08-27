@@ -36,7 +36,7 @@ export default {
       const raw = JSON.stringify({
         bug: this.bug,
         description: this.description,
-        uid: this.uid,
+        uid: this.uid || "anon",
       });
       console.log(raw);
 

@@ -23,7 +23,9 @@ import Bug from "../components/Bug.vue";
         </ul>
       </div>
     </div>
+
     <BugReport v-if="popupVisible" @closePopup="popupVisible = !popupVisible"></BugReport>
+
     <!-- <button @click="reset" class="fixed bottom-0">RESET DB</button> -->
   </main>
 </template>

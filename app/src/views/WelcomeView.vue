@@ -1,5 +1,6 @@
 <script setup>
 import { signInWithGoogle, createPasswordUser, signInPasswordUser, getUser, logout, updateUser } from "../functions/firebaseSetup.js";
+import BugReport from "../components/BugReport.vue";
 </script>
 <template>
   <main class="flex flex-col items-center dark:text-zinc-100 p-6">
@@ -30,6 +31,9 @@ import { signInWithGoogle, createPasswordUser, signInPasswordUser, getUser, logo
         <button @click="loginUser" class="m-2 p-2 bg-secondary text-white">Login</button>
       </div>
     </div>
+    <p class="pt-10">Or if you'd like to just report a bug, click the button below</p>
+    <button @click="popupVisible = !popupVisible" class="m-2 p-2 bg-secondary text-white">Report Bug</button>
+    <BugReport v-if="popupVisible" @closePopup="popupVisible = !popupVisible" class="text-black"></BugReport>
   </main>
 </template>
 <script>
@@ -44,6 +48,7 @@ export default {
       editedUsername: false,
       count: 0,
       page: "welcome",
+      popupVisible: false,
     };
   },
   methods: {
