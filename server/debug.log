@@ -1,0 +1,103 @@
+server up
+[Error: SQLITE_CANTOPEN: unable to open database file] {
+  errno: 14,
+  code: 'SQLITE_CANTOPEN'
+}
+server up
+server up
+server up
+server up
+server up
+server up
+server up
+server up
+server up
+server up
+server up
+server up
+server up
+server up
+server up
+server up
+server up
+server up
+[Error: SQLITE_CANTOPEN: unable to open database file] {
+  errno: 14,
+  code: 'SQLITE_CANTOPEN'
+}
+USR Connected
+USR Connected
+BUGS
+USR Connected
+BUGS
+{
+  bug: 'test',
+  description: 'test',
+  uid: '5kxA0O4ay9Z7X6LGBCxHK1iVyhx2'
+}
+BUGS
+USR Connected
+BUGS
+server up
+[Error: SQLITE_CANTOPEN: unable to open database file] {
+  errno: 14,
+  code: 'SQLITE_CANTOPEN'
+}
+USR Connected
+BUGS
+USR Connected
+BUGS
+server up
+USR Connected
+USR Connected
+BUGS
+server up
+USR Connected
+BUGS
+BUGS
+USR Connected
+BUGS
+50518ed9-32d2-49fd-bd86-5b48b39562c3
+50518ed9-32d2-49fd-bd86-5b48b39562c3
+50518ed9-32d2-49fd-bd86-5b48b39562c3
+50518ed9-32d2-49fd-bd86-5b48b39562c3
+50518ed9-32d2-49fd-bd86-5b48b39562c3
+USR Connected
+50518ed9-32d2-49fd-bd86-5b48b39562c3
+50518ed9-32d2-49fd-bd86-5b48b39562c3
+USR Connected
+50518ed9-32d2-49fd-bd86-5b48b39562c3
+server up
+USR Connected
+50518ed9-32d2-49fd-bd86-5b48b39562c3
+{
+  uuid: '50518ed9-32d2-49fd-bd86-5b48b39562c3',
+  user: '5kxA0O4ay9Z7X6LGBCxHK1iVyhx2'
+}
+USR Connected
+50518ed9-32d2-49fd-bd86-5b48b39562c3
+USR Connected
+50518ed9-32d2-49fd-bd86-5b48b39562c3
+{
+  uuid: '50518ed9-32d2-49fd-bd86-5b48b39562c3',
+  user: '5kxA0O4ay9Z7X6LGBCxHK1iVyhx2'
+}
+USR Connected
+50518ed9-32d2-49fd-bd86-5b48b39562c3
+server up
+USR Connected
+50518ed9-32d2-49fd-bd86-5b48b39562c3
+{
+  uuid: '50518ed9-32d2-49fd-bd86-5b48b39562c3',
+  user: '5kxA0O4ay9Z7X6LGBCxHK1iVyhx2'
+}
+server up
+USR Connected
+50518ed9-32d2-49fd-bd86-5b48b39562c3
+{
+  uuid: '50518ed9-32d2-49fd-bd86-5b48b39562c3',
+  user: '5kxA0O4ay9Z7X6LGBCxHK1iVyhx2'
+}
+null
+USR Connected
+50518ed9-32d2-49fd-bd86-5b48b39562c3

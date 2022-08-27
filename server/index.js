@@ -7,15 +7,15 @@ const { v4 } = require("uuid");
 const history = require("connect-history-api-fallback");
 const path = require("path");
 
-const fs = require('fs');
-const util = require('util');
+const fs = require("fs");
+const util = require("util");
 
-const log_file= fs.createWriteStream(__dirname + '/debug.log', {flags : 'a'});
+const log_file = fs.createWriteStream(__dirname + "/debug.log", { flags: "a" });
 const log_stdout = process.stdout;
 
-console.log = function(d){
-    log_file.write(util.format(d) + '\n');
-    log_stdout.write(util.format(d) + '\n');
+console.log = function (d) {
+  log_file.write(util.format(d) + "\n");
+  log_stdout.write(util.format(d) + "\n");
 };
 
 app.use(cors());
@@ -43,6 +43,7 @@ app.get("/api/test", (req, res) => {
   res.json({ msg: "Hello World!" });
 });
 
+//get all bugs
 app.get("/api/bugs", (req, res) => {
   console.log("BUGS");
   db.all("SELECT *, rowid FROM bugs", (err, rows) => {
@@ -50,6 +51,8 @@ app.get("/api/bugs", (req, res) => {
     res.json(rows);
   });
 });
+
+//get bug by uuid
 app.get("/api/bug", (req, res) => {
   let uuid = req.query.uuid;
   console.log(uuid);
@@ -58,6 +61,7 @@ app.get("/api/bug", (req, res) => {
   });
 });
 
+//add bug
 app.post("/api/report", (req, res) => {
   console.log(req.body);
 
@@ -69,6 +73,7 @@ app.post("/api/report", (req, res) => {
   res.send("Thank you");
 });
 
+//update bug status
 app.get("/api/status", (req, res) => {
   db.exec(`
     UPDATE bugs
@@ -78,6 +83,23 @@ app.get("/api/status", (req, res) => {
   res.send("Thank you");
 });
 
+//update bug assignee
+app.get("/api/assign", (req, res) => {
+  console.log(req.query);
+  db.exec(
+    `
+    UPDATE bugs
+    SET assigned = '${req.query.user}'
+    WHERE uuid = '${req.query.uuid}'
+  `,
+    (err) => {
+      console.log(err);
+    }
+  );
+  res.send("Thank you");
+});
+
+//reset db
 app.get("/api/reset", (req, res) => {
   db.exec("DELETE FROM bugs");
 });

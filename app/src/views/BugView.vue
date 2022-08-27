@@ -11,11 +11,13 @@
         <div>Assignee: {{ bug.assigned }}</div>
         <div>Status: {{ bug.status }}</div>
         <div>ID: {{ bug.uuid }}</div>
+        <button @click="updateAssigned" class="my-2 p-2 bg-secondary text-white">Assign to me</button>
       </div>
     </div>
   </main>
 </template>
 <script>
+import { getUser } from "../functions/firebaseSetup";
 export default {
   data() {
     return {
@@ -31,6 +33,13 @@ export default {
       let response = await fetch(url);
       let responseJson = await response.json();
       this.bug = responseJson;
+    },
+    async updateAssigned() {
+      getUser((user) => {
+        let url = `/api/assign?uuid=${this.$route.params.uuid}&user=${user.uid}`;
+        console.log(url);
+        fetch(url);
+      });
     },
   },
 };

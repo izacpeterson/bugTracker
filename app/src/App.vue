@@ -15,6 +15,7 @@ import WelcomeView from "./views/WelcomeView.vue";
 import { getUser } from "./functions/firebaseSetup";
 
 import PageHeader from "./components/PageHeader.vue";
+
 export default {
   data() {
     return {
