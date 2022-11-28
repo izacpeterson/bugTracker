@@ -3,6 +3,7 @@
     <main class="p-2">
       <h2 class="text-2xl">{{ project.name }}</h2>
       <p>{{ project.description }}</p>
+      <p>{{ project.owner }}</p>
       <!-- {{ $route.params.id }} -->
       <button class="btn btn-primary" @click="reportVisible = !reportVisible">
         Report Bug

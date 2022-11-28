@@ -26,19 +26,22 @@
   </div>
 </template>
 <script>
+import { getUser } from '~/assets/functions/firebase'
 export default {
   data() {
     return {
       message: '',
       project: {
         name: '',
-        owner: 'izac',
+        owner: '',
         description: '',
       },
     }
   },
   methods: {
     createProject() {
+      this.project.owner = getUser()
+
       var myHeaders = new Headers()
       myHeaders.append('Content-Type', 'application/json')
 
