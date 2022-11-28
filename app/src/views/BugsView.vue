@@ -4,19 +4,19 @@
       <ul class="dark:text-gray-300 lg:w-1/4">
         <h2 class="text-center text-xl">New</h2>
         <li v-for="bug in bugs" v-bind:key="bug.title">
-          <Bug @refresh="updateList" v-if="bug.status == 'new'" :bug="bug.title" :description="bug.description" :timestamp="bug.timestamp" :uuid="bug.uuid" :status="bug.status" />
+          <Bug @refresh="updateList" v-if="bug.status == 'new'" :bug="bug.title" :description="bug.description" :timestamp="bug.timestamp" :uuid="bug.uuid" :status="bug.status" :assigned="bug.assigned" />
         </li>
       </ul>
       <ul class="dark:text-gray-300 w-1/4">
         <h2 class="text-center text-xl">WIP</h2>
         <li v-for="bug in bugs" v-bind:key="bug.title">
-          <Bug @refresh="updateList" v-if="bug.status == 'wip'" :bug="bug.title" :description="bug.description" :timestamp="bug.timestamp" :uuid="bug.uuid" :status="bug.status" />
+          <Bug @refresh="updateList" v-if="bug.status == 'wip'" :bug="bug.title" :description="bug.description" :timestamp="bug.timestamp" :uuid="bug.uuid" :status="bug.status" :assigned="bug.assigned" />
         </li>
       </ul>
       <ul class="dark:text-gray-300 w-1/4">
         <h2 class="text-center text-xl">Fixed</h2>
         <li v-for="bug in bugs" v-bind:key="bug.title">
-          <Bug @refresh="updateList" v-if="bug.status == 'fixed'" :bug="bug.title" :description="bug.description" :timestamp="bug.timestamp" :uuid="bug.uuid" :status="bug.status" />
+          <Bug @refresh="updateList" v-if="bug.status == 'fixed'" :bug="bug.title" :description="bug.description" :timestamp="bug.timestamp" :uuid="bug.uuid" :status="bug.status" :assigned="bug.assigned" />
         </li>
       </ul>
     </div>
@@ -28,17 +28,17 @@
       </div>
       <ul v-if="mobileList == 'New'" class="dark:text-gray-300 lg:w-1/4">
         <li v-for="bug in bugs" v-bind:key="bug.title">
-          <Bug @refresh="updateList" v-if="bug.status == 'new'" :bug="bug.title" :description="bug.description" :timestamp="bug.timestamp" :uuid="bug.uuid" :status="bug.status" />
+          <Bug @refresh="updateList" v-if="bug.status == 'new'" :bug="bug.title" :description="bug.description" :timestamp="bug.timestamp" :uuid="bug.uuid" :status="bug.status" :assigned="bug.assigned" />
         </li>
       </ul>
       <ul v-if="mobileList == 'WIP'" class="dark:text-gray-300 lg:w-1/4">
         <li v-for="bug in bugs" v-bind:key="bug.title">
-          <Bug @refresh="updateList" v-if="bug.status == 'wip'" :bug="bug.title" :description="bug.description" :timestamp="bug.timestamp" :uuid="bug.uuid" :status="bug.status" />
+          <Bug @refresh="updateList" v-if="bug.status == 'wip'" :bug="bug.title" :description="bug.description" :timestamp="bug.timestamp" :uuid="bug.uuid" :status="bug.status" :assigned="bug.assigned" />
         </li>
       </ul>
       <ul v-if="mobileList == 'Fixed'" class="dark:text-gray-300 lg:w-1/4">
         <li v-for="bug in bugs" v-bind:key="bug.title">
-          <Bug @refresh="updateList" v-if="bug.status == 'fixed'" :bug="bug.title" :description="bug.description" :timestamp="bug.timestamp" :uuid="bug.uuid" :status="bug.status" />
+          <Bug @refresh="updateList" v-if="bug.status == 'fixed'" :bug="bug.title" :description="bug.description" :timestamp="bug.timestamp" :uuid="bug.uuid" :status="bug.status" :assigned="bug.assigned" />
         </li>
       </ul>
     </div>
@@ -64,9 +64,10 @@ export default {
       let jsonData = await rawData.json();
       this.bugs = jsonData;
     },
-    updateList(uuid, status) {
+    updateList(uuid, status, assigned) {
       let index = this.bugs.findIndex((bug) => bug.uuid == uuid);
       this.bugs[index].status = status;
+      this.bugs[index].assigned = assigned;
     },
     nextList() {
       if (this.mobileList == "New") {

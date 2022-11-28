@@ -12,13 +12,13 @@ import Bug from "../components/Bug.vue";
         <ul class="dark:text-gray-300 lg:w-1/3">
           <h2 class="text-center text-xl">New</h2>
           <li v-for="bug in bugs" v-bind:key="bug.title">
-            <Bug @refresh="updateList" v-if="bug.status == 'new'" :bug="bug.title" :description="bug.description" :timestamp="bug.timestamp" :uuid="bug.uuid" :status="bug.status" />
+            <Bug @refresh="updateList" v-if="bug.status == 'new'" :bug="bug.title" :description="bug.description" :timestamp="bug.timestamp" :uuid="bug.uuid" :status="bug.status" :assigned="bug.assigned" />
           </li>
         </ul>
         <ul class="dark:text-gray-300 lg:w-1/3">
           <h2 class="text-center text-xl">Bugs I'm working on</h2>
           <li v-for="bug in bugs" v-bind:key="bug.title">
-            <Bug @refresh="updateList" v-if="bug.assigned == user.uid && bug.status == 'wip'" :bug="bug.title" :description="bug.description" :timestamp="bug.timestamp" :uuid="bug.uuid" :status="bug.status" />
+            <Bug @refresh="updateList" v-if="bug.assigned == user.uid && bug.status == 'wip'" :bug="bug.title" :description="bug.description" :timestamp="bug.timestamp" :uuid="bug.uuid" :status="bug.status" :assigned="bug.assigned" />
           </li>
         </ul>
       </div>
@@ -61,9 +61,10 @@ export default {
       console.log(jsonData);
       this.bugs = jsonData;
     },
-    updateList(uuid, status) {
+    updateList(uuid, status, assigned) {
       let index = this.bugs.findIndex((bug) => bug.uuid == uuid);
       this.bugs[index].status = status;
+      this.bugs[index].assigned = assigned;
     },
   },
 };
