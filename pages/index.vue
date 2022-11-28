@@ -1,9 +1,7 @@
 <template>
   <div>
     <!-- <Tutorial /> -->
-    <button v-if="!user" @click="signIn" class="btn btn-primary">
-      Sign in with google
-    </button>
+    <button @click="signIn" class="btn btn-primary">Sign in with google</button>
     <CreateProject :user="user"></CreateProject>
   </div>
 </template>
