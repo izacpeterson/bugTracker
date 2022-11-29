@@ -3,12 +3,30 @@
     <main class="p-2">
       <h2 class="text-2xl">{{ project.name }}</h2>
       <p>{{ project.description }}</p>
-      <p>{{ project.owner }}</p>
+      <!-- <p>{{ project.owner }}</p> -->
       <!-- {{ $route.params.id }} -->
       <button class="btn btn-primary" @click="reportVisible = !reportVisible">
         Report Bug
       </button>
+      <div class="tabs w-full flex justify-evenly">
+        <div
+          href=""
+          class="tab tab-bordered"
+          :class="selectedTab == 'To Do' ? 'tab-active' : ''"
+          @click="selectedTab = 'To Do'"
+        >
+          To Do
+        </div>
+        <div
+          class="tab tab-bordered"
+          @click="selectedTab = 'Bugs'"
+          :class="selectedTab == 'Bugs' ? 'tab-active' : ''"
+        >
+          Bugs
+        </div>
+      </div>
       <ProjectBugList
+        v-if="selectedTab == 'Bugs'"
         :projectUUID="this.$route.params.id"
         :projectName="project.name"
       ></ProjectBugList>
@@ -26,6 +44,7 @@ export default {
     return {
       project: {},
       reportVisible: false,
+      selectedTab: 'Bugs',
     }
   },
   beforeCreate() {
