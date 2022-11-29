@@ -1,5 +1,7 @@
 <template>
-  <div class="p-2">
+  <div
+    class="fixed top-0 left-0 w-full h-full flex flex-col items-center backdrop-blur-3xl"
+  >
     <h2>Create Project</h2>
     <div class="form-control w-full max-w-xs m-2">
       <label for="" class="label">
@@ -23,6 +25,9 @@
     <button @click="createProject" class="btn btn-primary m-2">
       Create Project
     </button>
+    <button @click="$emit('closeProjectModal')" class="btn btn-error m-2">
+      Cancel
+    </button>
   </div>
 </template>
 <script>
@@ -39,8 +44,9 @@ export default {
     }
   },
   methods: {
-    createProject() {
-      this.project.owner = getUser()
+    async createProject() {
+      this.project.owner = await getUser()
+      console.log('owner', this.project.owner)
 
       var myHeaders = new Headers()
       myHeaders.append('Content-Type', 'application/json')

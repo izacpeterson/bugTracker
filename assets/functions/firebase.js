@@ -1,5 +1,10 @@
 import { initializeApp } from 'firebase/app'
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  onAuthStateChanged,
+} from 'firebase/auth'
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://firebase.google.com/docs/web/learn-more#config-object
 const firebaseConfig = {
@@ -41,22 +46,20 @@ export function googleSignIn() {
 }
 
 export function getUser() {
-  const auth = getAuth()
-  const user = auth.currentUser
-
-  if (user !== null) {
-    // The user object has basic properties such as display name, email, etc.
-    const displayName = user.displayName
-    const email = user.email
-    const photoURL = user.photoURL
-    const emailVerified = user.emailVerified
-
-    // The user's ID, unique to the Firebase project. Do NOT use
-    // this value to authenticate with your backend server, if
-    // you have one. Use User.getToken() instead.
-    const uid = user.uid
-    return user.uid
-  } else {
-    return null
-  }
+  return new Promise((resolve, reject) => {
+    const auth = getAuth()
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        const uid = user.uid
+        resolve(uid)
+        // ...
+      } else {
+        // User is signed out
+        // ...
+        reject(null)
+      }
+    })
+  })
 }

@@ -1,6 +1,8 @@
 <template>
   <div>
     <PageHeader></PageHeader>
-    <Nuxt />
+    <main class="p-2">
+      <Nuxt />
+    </main>
   </div>
 </template>

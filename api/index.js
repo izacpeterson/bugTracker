@@ -75,6 +75,15 @@ app.get('/getProjectBugs/:project', (req, res) => {
   )
 })
 
+app.get('/getMyProjects/:uid', (req, res) => {
+  db.all(
+    `SELECT * FROM projects WHERE owner = '${req.params.uid}'`,
+    (err, rows) => {
+      res.send(rows)
+    }
+  )
+})
+
 app.get('/dropTables', (req, res) => {
   db.run('DROP TABLE projects', (err) => {
     if (err) {
