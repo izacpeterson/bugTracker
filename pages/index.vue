@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- <Tutorial /> -->
-    <button v-if="!user" @click="signIn" class="btn btn-primary">
+    <button v-if="!$store.state.user" @click="signIn" class="btn btn-primary">
       Sign in with google
     </button>
     <div v-if="user">

@@ -3,7 +3,7 @@
     <ul class="mt-6">
       <nuxt-link
         :to="'/bug/' + bug.uuid"
-        v-for="bug in $store.state.bugs"
+        v-for="bug in bugs"
         :key="bug.uuid"
         class="card bg-neutral text-neutral-content shadow-xl m-2"
       >

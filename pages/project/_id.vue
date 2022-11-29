@@ -8,7 +8,10 @@
       <button class="btn btn-primary" @click="reportVisible = !reportVisible">
         Report Bug
       </button>
-      <ProjectBugList :projectUUID="this.$route.params.id"></ProjectBugList>
+      <ProjectBugList
+        :projectUUID="this.$route.params.id"
+        :projectName="project.name"
+      ></ProjectBugList>
       <ReportBug
         v-if="reportVisible"
         @close="reportVisible = !reportVisible"
