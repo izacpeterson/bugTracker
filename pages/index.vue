@@ -30,6 +30,7 @@ export default {
   async mounted() {
     console.log(this.user)
     this.user = await getUser()
+    this.$store.commit('set_user', this.user)
   },
   methods: {
     signIn() {

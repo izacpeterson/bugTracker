@@ -64,6 +64,7 @@ export default {
         .then((response) => response.text())
         .then((result) => {
           console.log(result)
+          this.$store.commit('add_project', this.project)
           this.$router.push(`/project/${result}`)
         })
         .catch((error) => console.log('error', error))

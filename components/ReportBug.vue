@@ -61,6 +61,12 @@ export default {
         .then((response) => response.text())
         .then((result) => {
           console.log(result)
+          this.$store.commit('add_bug', {
+            name: this.bug.name,
+            description: this.bug.description,
+            project: this.uuid,
+            status: 'new',
+          })
           this.$emit('close')
         })
         .catch((error) => console.log('error', error))

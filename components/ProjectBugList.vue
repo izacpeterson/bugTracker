@@ -2,8 +2,8 @@
   <div>
     <ul class="mt-6">
       <nuxt-link
-        to="/"
-        v-for="bug in bugs"
+        :to="'/bug/' + bug.uuid"
+        v-for="bug in $store.state.bugs"
         :key="bug.uuid"
         class="card bg-neutral text-neutral-content shadow-xl m-2"
       >
@@ -33,6 +33,7 @@ export default {
       .then((bugs) => {
         console.log(bugs[0])
         this.bugs = bugs
+        this.$store.commit('set_bugs', bugs)
       })
   },
 }

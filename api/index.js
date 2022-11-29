@@ -66,6 +66,15 @@ app.post('/reportBug', (req, res) => {
   )
 })
 
+app.get('/getBug/:uuid', (req, res) => {
+  db.all(
+    `SELECT * FROM BUGS WHERE uuid = '${req.params.uuid}'`,
+    (err, rows) => {
+      res.send(rows[0])
+    }
+  )
+})
+
 app.get('/getProjectBugs/:project', (req, res) => {
   db.all(
     `SELECT * FROM bugs WHERE project = '${req.params.project}'`,
