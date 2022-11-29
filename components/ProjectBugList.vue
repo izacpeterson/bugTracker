@@ -1,20 +1,24 @@
 <template>
   <div>
     <ul class="mt-6">
-      <nuxt-link
-        :to="'/bug/' + bug.uuid"
+      <div
         v-for="bug in bugs"
         :key="bug.uuid"
-        class="card bg-neutral text-neutral-content shadow-xl m-2"
+        class="collapse border border-base-300 bg-base-100 rounded-box m-2"
+        tabindex="0"
       >
-        <div class="card-body">
-          <div class="card-title">
-            {{ bug.name }}
-            <div class="badge badge-primary">{{ bug.status }}</div>
-          </div>
-          <!-- <div>{{ bug.description }}</div> -->
+        <div class="collapse-title text-xl font-medium">
+          {{ bug.name }}
+          <!-- <div class="badge badge-primary">{{ bug.status }}</div> -->
         </div>
-      </nuxt-link>
+        <div class="collapse-content">
+          <p>{{ bug.description }}</p>
+          <div class="btn-group">
+            <span class="btn btn-primary">Done</span>
+            <span class="btn btn-error">Delete</span>
+          </div>
+        </div>
+      </div>
     </ul>
   </div>
 </template>

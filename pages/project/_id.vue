@@ -2,11 +2,16 @@
   <div>
     <main class="p-2">
       <h2 class="text-2xl">{{ project.name }}</h2>
+      <p class="text-sm">{{ $route.params.id }}</p>
+
       <p>{{ project.description }}</p>
       <!-- <p>{{ project.owner }}</p> -->
-      <!-- {{ $route.params.id }} -->
+
       <button class="btn btn-primary" @click="reportVisible = !reportVisible">
         Report Bug
+      </button>
+      <button class="btn btn-primary" @click="todoVisible = !todoVisible">
+        New ToDo
       </button>
       <div class="tabs w-full flex justify-evenly">
         <div
@@ -30,11 +35,17 @@
         :projectUUID="this.$route.params.id"
         :projectName="project.name"
       ></ProjectBugList>
+      <ProjectTodoList :projectUUID="this.$route.params.id"></ProjectTodoList>
       <ReportBug
         v-if="reportVisible"
         @close="reportVisible = !reportVisible"
         :uuid="project.uuid"
       ></ReportBug>
+      <AddToDo
+        v-if="todoVisible"
+        @close="todoVisible = !todoVisible"
+        :uuid="project.uuid"
+      ></AddToDo>
     </main>
   </div>
 </template>
@@ -44,6 +55,7 @@ export default {
     return {
       project: {},
       reportVisible: false,
+      todoVisible: false,
       selectedTab: 'Bugs',
     }
   },

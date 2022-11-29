@@ -84,6 +84,32 @@ app.get('/getProjectBugs/:project', (req, res) => {
   )
 })
 
+app.post('/addTodo', (req, res) => {
+  let uuid = uuidv4()
+  db.run(
+    `
+  INSERT INTO todo (name, status, project, uuid) VALUES (?, ?, ?, ?)`,
+    [req.body.name, 'new', req.body.project, uuid],
+    (err) => {
+      if (err) {
+        console.log(err)
+        res.send(err)
+      } else {
+        res.send(uuid)
+      }
+    }
+  )
+})
+
+app.get('/getProjectTodos/:project', (req, res) => {
+  db.all(
+    `SELECT * FROM todo WHERE project = '${req.params.project}'`,
+    (err, rows) => {
+      res.send(rows)
+    }
+  )
+})
+
 app.get('/getMyProjects/:uid', (req, res) => {
   db.all(
     `SELECT * FROM projects WHERE owner = '${req.params.uid}'`,
@@ -102,6 +128,13 @@ app.get('/dropTables', (req, res) => {
       res.send('success')
     }
   })
+})
+
+app.get('/wipe', (req, res) => {
+  db.run('DELETE FROM projects')
+  db.run('DELETE FROM bugs')
+  db.run('DELETE FROM todo')
+  res.send('success')
 })
 
 app.get('/test', function (req, res) {
