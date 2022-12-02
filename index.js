@@ -23,12 +23,12 @@ const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
-  io.emit("newMessage", {
-    message: "Test Message",
-    user: "asdf",
-    name: "Test User",
-    project: "30320f7a-48ab-44b8-962f-089d66f127a5",
-  });
+  // io.emit("newMessage", {
+  //   message: "Test Message",
+  //   user: "asdf",
+  //   name: "Test User",
+  //   project: "30320f7a-48ab-44b8-962f-089d66f127a5",
+  // });
   socket.on("newMessage", (msg) => {
     socket.broadcast.emit("newMessage", msg);
   });
