@@ -64,4 +64,16 @@ router.get("/update", (req, res) => {
   });
 });
 
+//DELETE BUG
+router.get("/delete", (req, res) => {
+  const query = "DELETE FROM bugs WHERE uuid = ?";
+  db.run(query, req.query.uuid, (err) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send("Deleted");
+    }
+  });
+});
+
 module.exports = router;
