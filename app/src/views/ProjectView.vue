@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import ToDoList from "../components/TodoList.vue";
 import BugList from "../components/BugList.vue";
+import Chat from "../components/Chat.vue";
 </script>
 <template>
   <div class="text-center">
@@ -10,9 +11,11 @@ import BugList from "../components/BugList.vue";
     <div class="tabs w-full flex items-center justify-center my-4">
       <a @click="listView = 'ToDo'" class="tab" :class="listView == 'ToDo' ? 'tab-active' : ''">Todos</a>
       <a @click="listView = 'Bugs'" class="tab" :class="listView == 'Bugs' ? 'tab-active' : ''">Bugs</a>
+      <a @click="listView = 'Chat'" class="tab" :class="listView == 'Chat' ? 'tab-active' : ''">Chat</a>
     </div>
     <ToDoList v-if="listView == 'ToDo'"></ToDoList>
     <BugList v-if="listView == 'Bugs'"></BugList>
+    <Chat v-if="listView == 'Chat'"></Chat>
     <!-- <div>
       <span class="badge m-2 badge-primary"
         >To Do:
@@ -36,7 +39,7 @@ export default {
         description: "",
       },
       bugs: [],
-      listView: "ToDo",
+      listView: "Chat",
     };
   },
   created() {
