@@ -97,7 +97,7 @@ router.get("/project/:id", async (req, res) => {
       project = rows[0];
       project.todoCount = await getTodoCount(uuid);
       project.bugCount = await getBugCount(uuid);
-      project.users = project.users.split(",");
+      if (project.users) project.users = project.users.split(",");
       res.send(project);
     }
   });
