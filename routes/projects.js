@@ -9,7 +9,7 @@ let db;
 if (true) {
   console.log("PROD");
   db = new sqlite3.Database("./db.db");
-  db.run("CREATE TABLE IF NOT EXISTS projects (name TEXT, description TEXT, owner TEXT, uuid TEXT)");
+  db.run("CREATE TABLE IF NOT EXISTS projects (name TEXT, description TEXT, owner TEXT, uuid TEXT, users TEXT)");
 } else {
   console.log("DEV DB");
   db = new sqlite3.Database(":memory:");
@@ -97,14 +97,15 @@ router.get("/project/:id", async (req, res) => {
       project = rows[0];
       project.todoCount = await getTodoCount(uuid);
       project.bugCount = await getBugCount(uuid);
+      project.users = project.users.split(",");
       res.send(project);
     }
   });
 });
 
 router.get("/myProjects/:id", (req, res) => {
-  const query = "SELECT * FROM projects WHERE owner = ?";
-  db.all(query, req.params.id, async (err, rows) => {
+  const query = "SELECT * FROM projects WHERE owner = ? OR users LIKE ?";
+  db.all(query, [req.params.id, `%${req.query.email}%`], async (err, rows) => {
     if (err) {
       res.send(err);
     } else {
@@ -138,6 +139,28 @@ router.get("/stats", (req, res) => {
     } else {
       res.send(rows);
     }
+  });
+});
+
+router.get("/addUser", (req, res) => {
+  const getQuery = "SELECT users FROM projects WHERE uuid = ?";
+  db.get(getQuery, req.query.project, (err, row) => {
+    let users = [];
+    if (row.users == null) {
+      users = [];
+    } else {
+      users = row.users.split(",");
+    }
+    let updateQuery = "UPDATE projects SET users = ? WHERE uuid = ?";
+    users.push(req.query.user);
+    console.log(users);
+    db.run(updateQuery, [users.join(","), req.query.project], (err) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send("Success");
+      }
+    });
   });
 });
 

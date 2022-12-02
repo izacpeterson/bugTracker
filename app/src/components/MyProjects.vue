@@ -56,7 +56,7 @@ export default {
   methods: {
     async getProjects() {
       let user = await getUser();
-      let rawData = await fetch(`/api/projects/myProjects/${user.uid}`);
+      let rawData = await fetch(`/api/projects/myProjects/${user.uid}?email=${user.email}`);
       let jsonData = await rawData.json();
       this.projects = jsonData;
       console.log(jsonData[0]);

@@ -23,7 +23,6 @@ const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
-  console.log("a user connected");
   io.emit("newMessage", {
     message: "Test Message",
     user: "asdf",
@@ -31,7 +30,6 @@ io.on("connection", (socket) => {
     project: "30320f7a-48ab-44b8-962f-089d66f127a5",
   });
   socket.on("newMessage", (msg) => {
-    console.log(msg);
     socket.broadcast.emit("newMessage", msg);
   });
 });

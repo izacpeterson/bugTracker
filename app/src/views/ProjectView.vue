@@ -2,6 +2,7 @@
 import ToDoList from "../components/TodoList.vue";
 import BugList from "../components/BugList.vue";
 import Chat from "../components/Chat.vue";
+import Users from "../components/Users.vue";
 </script>
 <template>
   <div class="text-center">
@@ -12,10 +13,12 @@ import Chat from "../components/Chat.vue";
       <a @click="listView = 'ToDo'" class="tab" :class="listView == 'ToDo' ? 'tab-active' : ''">Todos</a>
       <a @click="listView = 'Bugs'" class="tab" :class="listView == 'Bugs' ? 'tab-active' : ''">Bugs</a>
       <a @click="listView = 'Chat'" class="tab" :class="listView == 'Chat' ? 'tab-active' : ''">Chat</a>
+      <a @click="listView = 'Users'" class="tab" :class="listView == 'Users' ? 'tab-active' : ''">Users</a>
     </div>
     <ToDoList v-if="listView == 'ToDo'"></ToDoList>
     <BugList v-if="listView == 'Bugs'"></BugList>
     <Chat v-if="listView == 'Chat'"></Chat>
+    <Users v-if="listView == 'Users'" :users="project['users']"></Users>
     <!-- <div>
       <span class="badge m-2 badge-primary"
         >To Do:
@@ -37,9 +40,10 @@ export default {
       project: {
         name: "",
         description: "",
+        users: "",
       },
       bugs: [],
-      listView: "Chat",
+      listView: "Users",
     };
   },
   created() {
