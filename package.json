@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "prestart": "npm install && cd app && npm install && npm run build",
+    "start": "node index.js"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",

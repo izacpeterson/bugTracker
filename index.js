@@ -13,6 +13,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+app.use(express.static("./app/dist"));
+
 app.use("/api/tests", test);
 app.use("/api/projects", projects);
 app.use("/api/todos", todos);
