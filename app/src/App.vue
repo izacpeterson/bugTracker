@@ -4,6 +4,8 @@ import PageHeader from "./components/PageHeader.vue";
 </script>
 
 <template>
-  <PageHeader></PageHeader>
-  <RouterView />
+  <div>
+    <PageHeader></PageHeader>
+    <RouterView />
+  </div>
 </template>
