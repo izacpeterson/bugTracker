@@ -33,7 +33,8 @@
       </div>
 
       <div class="modal-action">
-        <label for="my-modal" class="btn" @click="addTodo">Yay!</label>
+        <label for="my-modal" class="btn btn-error">Cancel</label>
+        <label for="my-modal" class="btn btn-primary" @click="addTodo">Add</label>
       </div>
     </div>
   </div>

@@ -7,6 +7,10 @@ import BugList from "../components/BugList.vue";
     <h2 class="text-2xl">{{ project["name"] }}</h2>
     <!-- {{ $route.params.id }} -->
     <p>{{ project["description"] }}</p>
+    <div class="tabs w-full flex items-center justify-center my-4">
+      <a @click="listView = 'ToDo'" class="tab" :class="listView == 'ToDo' ? 'tab-active' : ''">Todos</a>
+      <a @click="listView = 'Bugs'" class="tab" :class="listView == 'Bugs' ? 'tab-active' : ''">Bugs</a>
+    </div>
     <ToDoList v-if="listView == 'ToDo'"></ToDoList>
     <BugList v-if="listView == 'Bugs'"></BugList>
     <!-- <div>

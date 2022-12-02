@@ -10,9 +10,9 @@
             {{ bug["name"] }} <span class="badge badge-primary">{{ bug["status"] }}</span>
           </div>
           <p>{{ bug["description"] }}</p>
-          <div>
-            <font-awesome-icon @click="updateBug(index)" :icon="bug['status'] == 'New' ? 'fa-solid fa-check' : 'fa-solid fa-rotate-left'" class="m-2 text-success" />
-            <font-awesome-icon icon="fa-solid fa-trash" class="m-2 text-error" />
+          <div class="flex justify-evenly w-full">
+            <button @click="updateBug(index)" class="btn btn-sm" :class="bug['status'] == 'New' ? ' btn-success' : 'btn-ghost text-success'">{{ bug["status"] == "New" ? "Complete" : "Redo" }}<font-awesome-icon :icon="bug['status'] == 'New' ? 'fa-solid fa-check' : 'fa-solid fa-rotate-left'" class="ml-2" /></button>
+            <button @click="deleteBug(bug['uuid'], index)" class="btn btn-sm btn-error">Delete<font-awesome-icon icon="fa-solid fa-trash" class="ml-2" /></button>
           </div>
         </div>
         <!-- <div v-if="bug['status'] == 'Done'" class="flex items-center m-4">
@@ -43,7 +43,8 @@
       </div>
 
       <div class="modal-action">
-        <label for="bug-modal" class="btn" @click="addBug">Yay!</label>
+        <label for="bug-modal" class="btn btn-error">Cancel</label>
+        <label for="bug-modal" class="btn btn-primary" @click="addBug">Add</label>
       </div>
     </div>
   </div>
@@ -80,6 +81,14 @@ export default {
 
       this.newBug = "";
       this.newDescription = "";
+    },
+    async deleteBug(uuid: Number, index: number) {
+      //   alert(uuid);
+      this.bugs.splice(index, 1);
+
+      let response = await fetch(`/api/bugs/delete?uuid=${uuid}`);
+      let msg = await response.text();
+      console.log(msg);
     },
   },
 };

@@ -2,7 +2,7 @@
   <ul class="text-center">
     <label for="my-modal" class="btn m-4">new project</label>
 
-    <li v-for="project in projects" :key="project['uuid']" class="text-center bg-base-200 m-4 shadow-sm">
+    <li v-for="project in projects" :key="project['uuid']" class="text-center bg-base-200 m-4 shadow-sm p-2">
       <router-link :to="'/project/' + project['uuid']">
         <div class="font-bold">{{ project["name"] }}</div>
         <div>{{ project["description"] }}</div>
