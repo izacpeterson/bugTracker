@@ -6,7 +6,7 @@ const { v4: uuidv4 } = require("uuid");
 const router = express.Router();
 
 let db;
-if (process.env.prod == "true") {
+if (true) {
   console.log("PROD");
   db = new sqlite3.Database("./db.db");
   db.run("CREATE TABLE IF NOT EXISTS projects (name TEXT, description TEXT, owner TEXT, uuid TEXT)");
