@@ -1,40 +1,60 @@
+<script setup lang="ts"></script>
+
 <template>
-  <header class="p-5 bg-primary dark:bg-zinc-800 text-white flex items-center w-full justify-evenly shadow">
-    <img width="50" src="../assets/bug.svg" alt="" />
-    <h1 class="text-2xl">Izac's Bug Tracker</h1>
-    <ul class="flex-grow flex justify-center">
-      <li class="m-2">
-        <router-link to="/">Home</router-link>
-      </li>
-      <li class="m-2">
-        <router-link to="/bugs">Bugs</router-link>
-      </li>
-      <!-- <li class="m-2"><router-link to="/bugs">Users</router-link></li> -->
-    </ul>
-    <router-link v-if="!user" to="/account">My Account</router-link>
-    <!-- <router-link v-if="user" to="/account" class="flex items-center">
-      <img :src="`https://ui-avatars.com/api/?name=${user.displayName}&background=random&rounded=true`" alt=""
-        class="m-2 w-8" />
-      {{ user.displayName }}
-    </router-link> -->
-    <div v-if="user" class="group relative">
-      <router-link to="/account" class="flex items-center">
-        <img :src="`https://ui-avatars.com/api/?name=${user.displayName}&background=random&rounded=true`" alt="" class="m-2 w-8" /><span class="hidden lg:flex">{{ user.displayName }}</span>
-      </router-link>
-      <ul class="hidden group-hover:block absolute w-32 right-0 bg-zinc-200 text-zinc-900">
-        <li class="p-2 cursor-pointer">
-          <router-link to="/account">My Account</router-link>
-        </li>
-        <li class="p-2 cursor-pointer">
-          <router-link to="/account">Logout</router-link>
-        </li>
-        <!-- <li><router-link to="/account"></router-link>My Account</li> -->
-      </ul>
+  <div class="navbar bg-base-200">
+    <div class="navbar-start">
+      <div class="dropdown">
+        <label tabindex="0" class="btn btn-ghost btn-circle">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
+        </label>
+        <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-200 rounded-box w-52">
+          <li><span>Projects</span></li>
+          <li @click="signInWithGoogle"><span> Sign in</span></li>
+
+          <!-- <li><a>Homepage</a></li>
+          <li><a>Portfolio</a></li>
+          <li><a>About</a></li> -->
+        </ul>
+      </div>
     </div>
-  </header>
+    <div class="navbar-center">
+      <router-link to="/" class="btn btn-ghost normal-case text-xl">Bug Tracker</router-link>
+    </div>
+    <div class="navbar-end">
+      <!-- <button class="btn btn-ghost btn-circle">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+      </button>
+      <button class="btn btn-ghost btn-circle">
+        <div class="indicator">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
+          <span class="badge badge-xs badge-primary indicator-item"></span>
+        </div>
+      </button> -->
+      <button class="btn btn-ghost btn-circle">
+        <font-awesome-icon icon="fa-solid fa-user" />
+      </button>
+    </div>
+  </div>
 </template>
-<script>
+<script lang="ts">
+import { signIn, getUser } from "../composables/firebase";
+import { themeChange } from "theme-change";
 export default {
-  props: ["user"],
+  data() {
+    return {
+      user: {},
+    };
+  },
+  async created() {
+    this.user = await getUser();
+  },
+  mounted() {
+    themeChange(false);
+  },
+  methods: {
+    signInWithGoogle() {
+      signIn();
+    },
+  },
 };
 </script>
