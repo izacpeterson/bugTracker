@@ -1,14 +1,14 @@
 <template>
   <ul class="text-center">
-    <label for="my-modal" class="btn">new project</label>
+    <label for="my-modal" class="btn m-4">new project</label>
 
     <li v-for="project in projects" :key="project['uuid']" class="text-center bg-base-200 m-4 shadow-sm">
       <router-link :to="'/project/' + project['uuid']">
         <div class="font-bold">{{ project["name"] }}</div>
         <div>{{ project["description"] }}</div>
         <div>
-          <span class="badge m-2 badge-primary">To Do: 0</span>
-          <span class="badge m-2 badge-error">Bugs: 0</span>
+          <span class="badge m-2 badge-primary">To Do: {{ project["todoCount"] }}</span>
+          <span class="badge m-2 badge-error">Bugs: {{ project["bugCount"] }}</span>
         </div>
       </router-link>
     </li>
@@ -23,6 +23,7 @@
         </label>
         <input v-model="newName" type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
       </div>
+
       <div class="form-control w-full max-w-xs">
         <label class="label">
           <span class="label-text">Project Description:</span>
@@ -58,6 +59,7 @@ export default {
       let rawData = await fetch(`/api/projects/myProjects/${user.uid}`);
       let jsonData = await rawData.json();
       this.projects = jsonData;
+      console.log(jsonData[0]);
     },
     async newProject() {
       let user = await getUser();

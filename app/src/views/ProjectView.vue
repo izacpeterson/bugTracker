@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import ToDoList from "../components/TodoList.vue";
+import BugList from "../components/BugList.vue";
 </script>
 <template>
   <div class="text-center">
     <h2 class="text-2xl">{{ project["name"] }}</h2>
     <!-- {{ $route.params.id }} -->
     <p>{{ project["description"] }}</p>
-    <ToDoList></ToDoList>
+    <ToDoList v-if="listView == 'ToDo'"></ToDoList>
+    <BugList v-if="listView == 'Bugs'"></BugList>
     <!-- <div>
       <span class="badge m-2 badge-primary"
         >To Do:
@@ -30,6 +32,7 @@ export default {
         description: "",
       },
       bugs: [],
+      listView: "ToDo",
     };
   },
   created() {
@@ -39,7 +42,8 @@ export default {
     async getProject() {
       let rawData = await fetch(`/api/projects/project/${this.$route.params.id}`);
       let jsondData = await rawData.json();
-      this.project = jsondData[0];
+      this.project = jsondData;
+      console.log(jsondData);
     },
   },
 };
