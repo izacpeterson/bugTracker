@@ -38,17 +38,19 @@
   </div>
 </template>
 <script lang="ts">
-import { getUser } from "../composables/firebase";
+import { getUser, signIn } from "../composables/firebase";
 export default {
   data() {
     return {
       projects: [],
       newName: "",
       newDescription: "",
+      user: {},
     };
   },
-  created() {
+  async created() {
     this.getProjects();
+    this.user = await getUser();
   },
   methods: {
     async getProjects() {
