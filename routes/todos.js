@@ -61,7 +61,7 @@ router.get("/project/:id", (req, res) => {
 router.get("/add", (req, res) => {
   let uuid = uuidv4();
   const query = "INSERT INTO todos(name, status, project, uuid) VALUES(?, ?, ?, ?)";
-  const values = [req.query.name, "new", req.query.project, uuid];
+  const values = [req.query.name, "New", req.query.project, uuid];
   db.run(query, values, (err) => {
     if (err) {
       res.send(err);
@@ -89,6 +89,8 @@ router.get("/delete", (req, res) => {
   db.run(query, req.query.uuid, (err) => {
     if (err) {
       res.send(err);
+    } else {
+      res.send("Deleted");
     }
   });
 });

@@ -18,6 +18,9 @@ if (process.env.prod == "true") {
       console.log(err);
     } else {
       //   addTestData();
+      const query = "INSERT INTO bugs(name, description, status, project, uuid) VALUES(?, ?, ?, ?, ?)";
+      const values = ["New Bug", "New bug description", "New", 1, uuidv4()];
+      db.run(query, values);
     }
   });
 }
@@ -26,7 +29,7 @@ if (process.env.prod == "true") {
 router.get("/add", (req, res) => {
   const uuid = uuidv4();
   const query = "INSERT INTO bugs(name, description, status, project, uuid) VALUES(?, ?, ?, ?, ?)";
-  const values = [req.query.name, req.query.description, req.query.status, req.query.project, uuid];
+  const values = [req.query.name, req.query.description, "New", req.query.project, uuid];
   db.run(query, values, (err) => {
     if (err) {
       console.log(err);

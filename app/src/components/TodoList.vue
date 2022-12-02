@@ -67,7 +67,7 @@ export default {
       this.todos.push({ name: this.newTodo, uuid: newUUID, status: "New" });
       this.newTodo = "";
     },
-    async deleteTodo(uuid: Number, index: Number) {
+    async deleteTodo(uuid: Number, index: number) {
       //   alert(uuid);
       this.todos.splice(index, 1);
       let response = await fetch(`/api/todos/delete?uuid=${uuid}`);
