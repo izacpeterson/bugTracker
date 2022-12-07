@@ -1,0 +1,15 @@
+{
+  "name": "Bug Tracker",
+  "description": "A simple bug tracker",
+  "display": "standalone",
+  "start_url": "/",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/logo_144.png",
+      "size": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
