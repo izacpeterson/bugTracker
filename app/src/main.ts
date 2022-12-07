@@ -22,12 +22,3 @@ app.use(router);
 app.component("font-awesome-icon", FontAwesomeIcon);
 
 app.mount("#app");
-
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", function () {
-    navigator.serviceWorker
-      .register("serviceWorker.js")
-      .then((res) => console.log("service worker registered"))
-      .catch((err) => console.log("service worker not registered", err));
-  });
-}
