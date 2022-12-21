@@ -12,7 +12,7 @@ import Users from "../components/Users.vue";
     <div class="tabs w-full flex items-center justify-center my-4">
       <a @click="listView = 'ToDo'" class="tab" :class="listView == 'ToDo' ? 'tab-active' : ''">Todos</a>
       <a @click="listView = 'Bugs'" class="tab" :class="listView == 'Bugs' ? 'tab-active' : ''">Bugs</a>
-      <a @click="listView = 'Chat'" class="tab" :class="listView == 'Chat' ? 'tab-active' : ''">Chat</a>
+      <!-- <a @click="listView = 'Chat'" class="tab" :class="listView == 'Chat' ? 'tab-active' : ''">Chat</a> -->
       <a @click="listView = 'Users'" class="tab" :class="listView == 'Users' ? 'tab-active' : ''">Users</a>
     </div>
     <ToDoList v-if="listView == 'ToDo'"></ToDoList>
